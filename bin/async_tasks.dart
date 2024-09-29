@@ -1,8 +1,20 @@
-import 'package:async_tasks/task1.dart' show AsyncMapper;
+// import 'package:async_tasks/task1.dart' show demonstrateTaskOne;
+import 'package:async_tasks/task2.dart' show AsyncFutureMapper;
 
-void main() {
-  final asyncMapper = AsyncMapper([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+void main() async {
+  final asyncFutureMapper = AsyncFutureMapper([1, 2, 3, 4, 5, 6, 7, 8, 9]);
 
-  asyncMapper.asyncMap((x) => x * x).forEach((x) => print("1: $x"));
-  asyncMapper.asyncFilter((x) => x % 2 == 0).forEach((x) => print("2: $x"));
+  asyncFutureMapper.asyncMap((x) => x * x).then((list) async {
+    for (final element in list) {
+      await Future.delayed(Duration(seconds: 1));
+      print("1: $element");
+    }
+  });
+
+  asyncFutureMapper.asyncFilter((x) => x % 2 == 1).then((list) async {
+    for (final element in list) {
+      await Future.delayed(Duration(seconds: 1));
+      print("2: $element");
+    }
+  });
 }
