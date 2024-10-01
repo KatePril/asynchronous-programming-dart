@@ -29,7 +29,7 @@ class AsyncFutureMapper<T, E> {
 void demonstrateTaskTwo() {
   final asyncFutureMapper = AsyncFutureMapper([1, 2, 3, 4, 5, 6, 7, 8, 9]);
 
-  asyncFutureMapper.asyncMap((x) => x * x).then((list) async {
+  asyncFutureMapper.asyncMap((x) async => x * x).then((list) async {
     for (final element in list) {
       await Future.delayed(Duration(seconds: 1));
       print("1: $element");
