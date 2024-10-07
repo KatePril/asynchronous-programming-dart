@@ -7,7 +7,9 @@ class AggregateError {
   AggregateError.withMessage(this.message);
   AggregateError.withMessageAndErrors(this.message, this.errors);
 
-  void addError(Object err) => errors.add(err);
+  void addError(Object err) {
+    errors.add(err);
+  }
 
   bool isEmpty() => errors.isEmpty;
 
@@ -18,7 +20,7 @@ class AggregateError {
       result.write(message!);
     }
     for (Object err in errors) {
-      result.write(" $err");
+      result.write("\n$err");
     }
     return result.toString();
   }
