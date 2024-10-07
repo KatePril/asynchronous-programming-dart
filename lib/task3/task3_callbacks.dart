@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:async/async.dart';
 import 'package:async_tasks/task1/ready/aggregate_error.dart';
 
-final operation = CancelableOperation.fromFuture(Future.value(0));
+final operation = CancelableOperation.fromValue(0);
 
 void asyncMap(list, map,  Function(List list, [AggregateError? errors]) callback) async {
   var results = [];
