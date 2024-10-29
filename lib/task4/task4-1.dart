@@ -2,13 +2,14 @@ import 'dart:async';
 import 'dart:math';
 import 'package:async/async.dart';
 
+var isCancelled = false;
 
 Stream<int> generate() async* {
-  while (true) {
+  while (!isCancelled) {
     await Future.delayed(Duration(seconds: 1));
     yield Random().nextInt(100);
   }
-} // check if the memory is not leaking (if the generator stops after operation.cancel)
+}
 
 void demoStream() async {
   final operation = CancelableOperation.fromSubscription(
@@ -19,6 +20,8 @@ void demoStream() async {
     )
   );
 
-  await Future.delayed(Duration(seconds: 10), () => operation.cancel());
-
+  await Future.delayed(Duration(seconds: 10), () {
+    operation.cancel();
+    isCancelled = true;
+  });
 }
