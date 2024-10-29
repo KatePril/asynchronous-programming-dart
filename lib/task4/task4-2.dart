@@ -5,7 +5,7 @@ Stream<dynamic> mapList(List<dynamic> list, Function map) async* {
     await Future.delayed(Duration(seconds: 1));
     yield map(el);
   }
-}
+} // check if the memory is not leaking (if the generator stops after operation.cancel)
 
 void demoStream() async {
   List list = [3.4, 8.1, 4.21, 5.6, 10.3, 1.33, 0.99, 4.12];

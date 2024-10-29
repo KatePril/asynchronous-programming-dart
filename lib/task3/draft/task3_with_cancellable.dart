@@ -8,18 +8,18 @@ class AsyncMapHolder<T, E> {
       Function(List<E> list, [AggregateError? errors]) callback
       ) async {
     List<E> results = [];
-    AggregateError errors = AggregateError.withMessage("Caught exceptions:");
+    List<Object> errors = [];
     for (final el in list) {
       try {
         results.add(await map(el));
       } catch (e) {
-        errors.addError(e);
+        errors.add(e);
       }
     }
-    if (errors.isEmpty()) {
+    if (errors.isEmpty) {
       callback(results);
     } else {
-      callback(results, errors);
+      callback(results, AggregateError(errors));
     }
   }
 }

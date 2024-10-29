@@ -6,20 +6,20 @@ final operation = CancelableOperation.fromValue(0);
 
 void asyncMap(list, map,  Function(List list, [AggregateError? errors]) callback) async {
   var results = [];
-  AggregateError aggregateError = AggregateError.withMessage("Caught exceptions:");
+  List<Object> errors = [];
   for (final el in list) {
     try {
       results.add(await map(el));
     } catch (e) {
-      aggregateError.addError(e);
+      errors.add(e);
       results.add(await operation.value);
       operation.cancel();
     }
   }
-  if (aggregateError.isEmpty()) {
+  if (errors.isEmpty) {
     callback(results);
   } else {
-    callback(results, aggregateError);
+    callback(results, AggregateError(errors));
   }
 }
 

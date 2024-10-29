@@ -4,6 +4,7 @@ List<int> list = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 void demoCancellable() async {
   var isCancelled = false;
+
   final CancelableOperation operation = CancelableOperation.fromFuture(
       Future(() async {
         for (final el in list) {
@@ -14,6 +15,7 @@ void demoCancellable() async {
       }),
       onCancel: () => print("Cancelled")
   );
-    await Future.delayed(Duration(seconds: 5), () => operation.cancel());
-    isCancelled = operation.isCanceled;
+
+  await Future.delayed(Duration(seconds: 5), () => operation.cancel());
+  isCancelled = operation.isCanceled;
 }

@@ -8,7 +8,7 @@ Stream<int> generate() async* {
     await Future.delayed(Duration(seconds: 1));
     yield Random().nextInt(100);
   }
-}
+} // check if the memory is not leaking (if the generator stops after operation.cancel)
 
 void demoStream() async {
   final operation = CancelableOperation.fromSubscription(

@@ -1,10 +1,8 @@
 class AggregateError {
-  List<Object> errors = List.empty(growable: true);
+  List<Object> errors;
   String? message;
 
-  AggregateError();
-  AggregateError.withErrors(this.errors);
-  AggregateError.withMessage(this.message);
+  AggregateError(this.errors);
   AggregateError.withMessageAndErrors(this.message, this.errors);
 
   void addError(Object err) {
@@ -25,4 +23,4 @@ class AggregateError {
     return result.toString();
   }
   
-}
+} // add aggregate builder
