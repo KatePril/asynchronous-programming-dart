@@ -14,9 +14,9 @@ void main() async {
   // demoCancellable(); // 3-1
   // demoCompleter(); // 3-2
   // demoStream(); // 4-1/2
-  // demoEventEmitter();
-  // demoDog();
-  // demoStreamEmitter();
-  demoEatEvent();
+  // demoEventEmitter(); // 5-1
+  // demoDog(); // 5-2
+  // demoStreamEmitter(); // 5-3
+  // demoEatEvent(); // 5-4
 }
 
