@@ -5,9 +5,29 @@ class Dog extends EventEmitter {
 
   Dog(this.name);
 
-  void bark(String barking) => emit('bark', barking);
-  void eat(String food) => emit('eat', food);
-  void walk(String owner) => emit('walk', owner);
+  void bark(String barking) {
+    try {
+      emit('bark', barking);
+    } catch(error) {
+      emit('error', error);
+    }
+  }
+
+  void eat(String food) {
+    try {
+      emit('eat', food);
+    } catch (error) {
+      emit('error', error);
+    }
+  }
+
+  void walk(String owner) {
+    try {
+      emit('walk', owner);
+    } catch (error) {
+      emit('error', error);
+    }
+  }
 }
 
 void demoDog() {
